@@ -2,12 +2,12 @@
 
 class Review{
 
-    private $id_product;
-    private $name_user;
-    private $photo_user;
-    private $stars;
-    private $title;
-    private $description;
+    private $_id_product;
+    private $_name_user;
+    private $_photo_user;
+    private $_stars;
+    private $_title;
+    private $_description;
 
     public function __construct(array $data)
     {
@@ -29,32 +29,56 @@ class Review{
 
     public function setIdProduct($id_product)
     {
-        $this->id_product = $id_product;
+        $this->_id_product = $id_product;
     }
 
     public function setNameUser($name_user)
     {
-        $this->name_user = $name_user;
+        $this->_name_user = $name_user;
     }
 
     public function setPhotoUser($photo_user)
     {
-        $this->photo_user = $photo_user;
+        $this->_photo_user = $photo_user;
     }
 
     public function setStars($stars)
         {
-           $this->stars = $stars;
+           $this->_stars = $stars;
         }
     
         public function setTitle($title)
         {
-            $this->title = $title;
+            $this->_title = $title;
         }
     
         public function setDescription($description)
         {
-            $this->description = $description;
+            $this->_description = $description;
+        }
+
+        public function getIdProduct(){
+            return $this->_id_product;
+        }
+
+        public function getNameUser(){
+            return $this->_name_user;
+        }
+
+        public function getPhotoUser(){
+            return $this->_photo_user;
+        }
+
+        public function getStars(){
+            return $this->_stars;
+        }
+        
+        public function getTitle(){
+            return $this->_title;
+        }
+        
+        public function getDescription(){
+            return $this->_description;
         }
         
 }

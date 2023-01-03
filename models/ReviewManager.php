@@ -1,5 +1,5 @@
 <?php
-class ProductManager extends Model
+class ReviewManager extends Model
 {
     public function getReview()
     {
