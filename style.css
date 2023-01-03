@@ -1,0 +1,42 @@
+body
+{
+    height: 100%;
+}
+
+.image-product
+{
+    width: 150px;
+    margin-bottom : 20px;
+    background-color : white;
+    border : 1px solid lightgray;
+    box-shadow: 5px 5px 5px  rgb(91, 91, 91);
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+.menu
+{
+    background-color: gray;
+}
+
+.main-header
+{
+    background-color: rgb(31, 31, 31);
+}
+
+.main-header h1 
+{
+    font-size : 20px;
+    color : white;
+    display: flex;
+    justify-content: center;
+    padding : 25px;
+    margin: 0px;
+}
+
+.top-navbar
+{
+    background-color: gray;
+    display : grid;
+    justify-content : center;
+}
