@@ -4,8 +4,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $t ?></title>
-    <link href="/projet_finale/Code/style.css" rel="stylesheet">
-    <link href="/projet_finale/Code/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/projetFinaleWeb/style.css" rel="stylesheet">
+    <link href="/projetFinaleWeb/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
 <header class="main-header">
@@ -28,6 +28,6 @@
 <footer>
     <p>Créé par Nathan Dal Pian</p>
 </footer>
-<script src="/projet_finale/Code/code/bootstrap-3.4.1-dist/js/jquery-3.6.1.min.js" type="text/js"></script>
-<script src="/projet_finale/Code/code/bootstrap-3.4.1-dist/js/bootstrap.min.js" type="text/js"></script>
+<script src="/projetFinaleWeb/bootstrap-3.4.1-dist/js/jquery-3.6.1.min.js" type="text/js"></script>
+<script src="/projetFinaleWeb/bootstrap-3.4.1-dist/js/bootstrap.min.js" type="text/js"></script>
 </html>
