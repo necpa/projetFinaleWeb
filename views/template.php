@@ -27,9 +27,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="index.php?page=boissons">Boissons <span class="sr-only"></span></a></li>
-        <li><a href="index.php?page=biscuits">Biscuits <span class="sr-only"></span></a></li>
-        <li><a href="index.php?page=fruits_secs">Fruits Secs</a></li>
+        <li><a href="index.php?url=boissons">Boissons <span class="sr-only"></span></a></li>
+        <li><a href="index.php?url=biscuits">Biscuits <span class="sr-only"></span></a></li>
+        <li><a href="index.php?url=fruitssecs">Fruits Secs</a></li>
         
       </ul>
       
