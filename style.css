@@ -19,7 +19,7 @@ body
     background-color: gray;
 }
 
-.main-header
+.main-header:hover
 {
     background-color: rgb(31, 31, 31);
 }
@@ -39,4 +39,18 @@ body
     background-color: gray;
     display : grid;
     justify-content : center;
+}
+
+.photoProfil{
+    width: 25px;
+}
+
+.ligne{
+    display: inline-block;
+}
+.etoile{
+    width: 20px;
+}
+.color-white{
+    color: white;
 }
