@@ -54,3 +54,12 @@ body
 .color-white{
     color: white;
 }
+
+.commentaire{
+    margin-bottom: 20px;
+}
+
+a, a:hover{
+    text-decoration: none;
+    color: inherit;
+}

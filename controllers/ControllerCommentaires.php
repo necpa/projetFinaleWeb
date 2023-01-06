@@ -2,6 +2,7 @@
 require_once('views/View.php');
 class ControllerCommentaires
 {
+    private $_productManager;
     private $_reviewManager;
     private $_view;
 
@@ -18,10 +19,21 @@ class ControllerCommentaires
     }
     private function reviews()
     {
-        $this->_reviewManager = new ReviewManager;
-        $reviews = $this->_reviewManager->getReview();
+        $productId = $_GET['id'] ?? null;
+        if(!$productId || !((int)$productId > 0)){
+            throw new Exception('No id in url.');
+        }
+        $this->_productManager = new ProductManager;
+        $produit = $this->_productManager->getProduct($productId);
+        if(!$produit){
+            throw new Exception('Produit non trouvé.');
+        }
+        $reviews = $this->_productManager->getProductReviews($produit);
+        // echo "<pre>" . print_r($reviews, true) . "</pre>";
+        // $this->_reviewManager = new ReviewManager;
+        // $reviews = $this->_reviewManager->getReview();
         $this->_view = new View('Commentaires');
-        $this->_view->generate(array('reviews' => $reviews));
+        $this->_view->generate(array('product' => $produit, 'reviews' => $reviews));
     }
 }
 ?>

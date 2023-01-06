@@ -4,46 +4,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $t ?></title>
-    <link href="/projetFinaleWeb/bootstrap-3.4.1-dist/css/bootstrap.css" rel="stylesheet">
-    <link href="/projetFinaleWeb/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="style.css?v=<?=rand(1,100000000)?>" rel="stylesheet" >
 </head>
 <body>
 
-        <header class="main-header">
-            <a href="index.php?url=acceuil">
-                <h1>I S I W E B 4 S H O P</h1>
-            </a>
-        </header>
+    <header class="main-header">
+        <a href="index.php?url=acceuil">
+            <h1>I S I W E B 4 S H O P</h1>
+        </a>
+    </header>
 
-    <nav class="navbar navbar-default ">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand">Notre offre :</a>
-        </div>
+    <nav class="navbar navbar-expand-lg bg-light mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="#">Notre offre :</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="index.php?url=boissons">Boissons <span class="sr-only"></span></a></li>
-            <li><a href="index.php?url=biscuits">Biscuits <span class="sr-only"></span></a></li>
-            <li><a href="index.php?url=fruitssecs">Fruits Secs</a></li>
-
-          </ul>
-
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Connexion</a></li>
-            <li>
-              <a href="#" aria-expanded="false">Panier</a>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
+                    <?php
+                        $categoryManager = new CategoryManager();
+                        $categories = $categoryManager->getCategories();
+                    ?>
+                    <?php foreach ($categories as $category) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.php?url=produits&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
+                        </li>
+                    <?php endforeach;?>
+                </ul>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Panier</a>
+                    </li>
+                </ul>
+            </div>
       </div><!-- /.container-fluid -->
     </nav>
         <main role="main">
@@ -52,9 +51,8 @@
             </div>
         </main>
 </body>
-<footer>
-    <p>Créé par Nathan Dal Pian</p>
+<footer class="d-none">
+    <p>Créé par Nathan Dal Pian et Mano Raichon</p>
 </footer>
-<script src="/projetFinaleWeb/bootstrap-3.4.1-dist/js/jquery-3.6.1.min.js" type="text/js"></script>
-<script src="/projetFinaleWeb/bootstrap-3.4.1-dist/js/bootstrap.min.js" type="text/js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </html>

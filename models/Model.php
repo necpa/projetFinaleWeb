@@ -19,10 +19,35 @@ abstract class Model
         return self::$_bdd;
     }
 
-    protected function getAll($table, $obj)
+    protected function getAll($table, $obj, $andWheres = [])
     {
+        $sql = "SELECT * FROM " . $table;
+
+        if(count($andWheres)){
+            $sql .= " WHERE ";
+            $estPremier = true;
+            foreach($andWheres as $andWhereKey => $andWhere){
+                if(!$estPremier){
+                    $sql .= " AND ";
+                }
+                $sql .= $andWhereKey . " = " . $andWhere;
+                $estPremier = false;
+            }
+        }
+        return $this->fetch($sql, $obj);
+    }
+
+    protected function getOne($table, $id, $obj){
+        $rows = $this->fetch('SELECT * FROM ' . $table . " WHERE id = " . $id, $obj);
+        if(count($rows)){
+            return $rows[0];
+        }
+        return null;
+    }
+
+    private function fetch($sql, $obj){
         $var = [];
-        $req = $this->getBdd()->prepare('SELECT * FROM '.$table);
+        $req = $this->getBdd()->prepare($sql);
         $req->execute();
         while($data = $req->fetch(PDO::FETCH_ASSOC))
         {
