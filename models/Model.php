@@ -30,6 +30,10 @@ abstract class Model
                 if(!$estPremier){
                     $sql .= " AND ";
                 }
+                if(is_string($andWhere))
+                {
+                    $andWhere = '"'. $andWhere.'"';
+                }
                 $sql .= $andWhereKey . " = " . $andWhere;
                 $estPremier = false;
             }
@@ -43,6 +47,24 @@ abstract class Model
             return $rows[0];
         }
         return null;
+    }
+
+    protected function addToTable($table, $tableDatas)
+    {
+        $sql = "INSERT INTO " . $table . " VALUES (";
+        $estPremier = true;
+        foreach ($tableDatas as $tableData)
+        {
+            if(!$estPremier){
+                $sql.= ", ";
+            }
+            $sql.= $tableData;
+            $estPremier = false;
+        }
+        $sql.= ")";
+        $req = $this->getBdd()->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
     }
 
     private function fetch($sql, $obj){

@@ -9,7 +9,7 @@ class View
         $this->_file = 'views/view'.$action.'.php';
     }
 
-    public function generate($data)
+    public function generate($data =[])
     {
         // partie spécifique de la vue
         $content = $this->generateFile($this->_file, $data);

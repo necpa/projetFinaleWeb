@@ -36,7 +36,7 @@
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Connexion</a>
+                        <a class="nav-link" href="index.php?url=connexion">Connexion</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Panier</a>

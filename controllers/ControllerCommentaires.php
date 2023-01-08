@@ -3,7 +3,6 @@ require_once('views/View.php');
 class ControllerCommentaires
 {
     private $_productManager;
-    private $_reviewManager;
     private $_view;
 
     public function __construct($url)

@@ -1,5 +1,5 @@
 <?php
-class ProductManager extends Model
+class OrderManager extends Model
 {
     public function getOrders()
     {

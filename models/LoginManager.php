@@ -1,8 +1,12 @@
 <?php
 class LoginManager extends Model
 {
-    public function getLogins()
+    public function login($username, $password)
     {
-        return $this->getAll('logins','Login');
+        $cond = ["username" => $username, "password" => $password];
+        $res = $this->getAll('logins',Login::class, $cond);
+        if (empty($res))
+            return false;
+        return true;
     }
 }
