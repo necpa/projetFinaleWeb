@@ -12,6 +12,6 @@ class ProductManager extends Model
     }
 
     public function getProductReviews(Product $product){
-        return $this->getAll('reviews', Review::class, ["id_product" => 1000]);
+        return $this->getAll('reviews', Review::class, ["id_product" => $product->getId()]);
     }
 }

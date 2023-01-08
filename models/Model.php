@@ -36,6 +36,7 @@ abstract class Model
                 }
                 $sql .= $andWhereKey . " = " . $andWhere;
                 $estPremier = false;
+
             }
         }
         return $this->fetch($sql, $obj);
@@ -49,7 +50,7 @@ abstract class Model
         return null;
     }
 
-    protected function addToTable($table, $tableDatas)
+    public function addToTable($table, $tableDatas)
     {
         $sql = "INSERT INTO " . $table . " VALUES (";
         $estPremier = true;

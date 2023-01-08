@@ -19,7 +19,7 @@ body
     background-color: gray;
 }
 
-.main-header:hover
+.main-header, main-header:hover
 {
     background-color: rgb(31, 31, 31);
 }
