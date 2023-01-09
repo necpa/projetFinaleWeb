@@ -42,6 +42,13 @@ abstract class Model
         return $this->fetch($sql, $obj);
     }
 
+    protected function getIdIn(string $table, $obj, array $ids = []){
+        if(count($ids) === 0){
+            return [];
+        }
+        return $this->fetch("SELECT * FROM " . $table . " WHERE id IN (" . implode(",", $ids) . ")", $obj);
+    }
+
     protected function getOne($table, $id, $obj){
         $rows = $this->fetch('SELECT * FROM ' . $table . " WHERE id = " . $id, $obj);
         if(count($rows)){
@@ -50,19 +57,8 @@ abstract class Model
         return null;
     }
 
-    public function addToTable($table, $tableDatas)
-    {
-        $sql = "INSERT INTO " . $table . " VALUES (";
-        $estPremier = true;
-        foreach ($tableDatas as $tableData)
-        {
-            if(!$estPremier){
-                $sql.= ", ";
-            }
-            $sql.= $tableData;
-            $estPremier = false;
-        }
-        $sql.= ")";
+    public function addToTable($sql)
+    {   //$sql est la requete sql
         $req = $this->getBdd()->prepare($sql);
         $req->execute();
         $req->closeCursor();
