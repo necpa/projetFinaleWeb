@@ -92,11 +92,23 @@
             </form>
         </div>
     </div>
+    <?php $compteur=0; //On regarde si il y'a déjà un commentaire avec le prénom dans ce produit?>
+    <?php foreach ($reviews as $review) : ?>
+        <?php if ( isset( $_GET['submit'] ) ) : ?>
+            <?php $prenom = $_GET['prenom']; ?>
+            <?php if ($prenom==$review->getNameUser()){
+                $compteur+=1;
+            } ?>
+        <?php endif; ?>
+    <?php endforeach; ?>
+
     <?php
+
         // Vérifier si le formulaire est soumis
-        if ( isset( $_GET['submit'] ) ) {
+        if ( isset( $_GET['submit']) and $compteur==0 ) {//Si le compteur = 0 c'est qu'il n'y a pas de commentaire avec le prenom rentré
              /*récupérer les données du formulaire en utilisant
                la valeur des attributs name comme clé*/
+            header('location:index.php?url=commentaires&id='.$product->getId());
 
             $note = $_GET['note'];
 
@@ -139,6 +151,9 @@
             }
 
             $conn->close();
-
         }
+        if ( isset( $_GET['submit']) and $compteur>0 ) {
+            header('location:index.php?url=commentaires&id='.$product->getId());
+        }
+
     ?>
