@@ -68,6 +68,43 @@ abstract class Model
         $req->closeCursor();
     }
 
+    public function addToTableColumn($table, $tableDatas)
+    {
+        $tableDataKeys = [];
+        $tableDataDatas = [];
+        foreach ($tableDatas as $tableDataKey => $tableDataData)
+        {
+            $tableDataKeys[] = $tableDataKey;
+            $tableDataDatas[] = $tableDataData;
+        }
+        $sql = "INSERT INTO ". $table. " (";
+        $estPremier = true;
+        foreach ($tableDataKeys as $tableDataKey)
+        {
+            if(!$estPremier)
+            {
+                $sql.=",";
+            }
+            $sql.= $tableDataKey;
+            $estPremier = false;
+        }
+        $sql.= ") VALUES (";
+        $estPremier = true;
+        foreach ($tableDataDatas as $tableData)
+        {
+            if(!$estPremier)
+            {
+                $sql.=",";
+            }
+            $sql.= '"'.$tableData.'"';
+            $estPremier = false;
+        }
+        $sql.= ")";
+        $req = $this->getBdd()->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+    }
+
     private function fetch($sql, $obj){
         $var = [];
         $req = $this->getBdd()->prepare($sql);
@@ -78,5 +115,15 @@ abstract class Model
         }
         $req->closeCursor();
         return $var;
+    }
+
+    public function maxId($table)
+    {
+        $sql = "SELECT MAX(id) FROM ". $table;
+        $req = $this->getBdd()->prepare($sql);
+        $req->execute();
+        $res = $req->fetch();
+        $req->closeCursor();
+        return $res['MAX(id)'];
     }
 }
