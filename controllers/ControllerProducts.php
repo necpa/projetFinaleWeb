@@ -1,6 +1,6 @@
 <?php
 require_once('views/View.php');
-class ControllerCommentaires
+class ControllerProducts
 {
     private $_productManager;
     private $_view;
@@ -31,7 +31,7 @@ class ControllerCommentaires
         // echo "<pre>" . print_r($reviews, true) . "</pre>";
         // $this->_reviewManager = new ReviewManager;
         // $reviews = $this->_reviewManager->getReview();
-        $this->_view = new View('Commentaires');
+        $this->_view = new View('Products');
         $this->_view->generate(array('product' => $produit, 'reviews' => $reviews));
     }
 }

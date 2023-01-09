@@ -1,6 +1,6 @@
 <?php
 require_once('views/View.php');
-class ControllerProduits
+class ControllerCategories
 {
     private $_categoryManager;
     private $_view;
@@ -17,7 +17,7 @@ class ControllerProduits
             throw new Exception('Catégorie non trouvé.');
         }
         $products = $this->_categoryManager->getCategoryProducts($category);
-        $this->_view = new View('Products');
+        $this->_view = new View('Categories');
         $this->_view->generate(array('products' => $products,'category' => $category));
     }
 }

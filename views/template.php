@@ -30,7 +30,7 @@
                     ?>
                     <?php foreach ($categories as $category) : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?url=produits&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
+                            <a class="nav-link" href="index.php?url=categories&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
                         </li>
                     <?php endforeach;?>
                 </ul>
