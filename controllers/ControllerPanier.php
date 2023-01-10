@@ -30,9 +30,25 @@ class ControllerPanier
                 unset($_SESSION["panier"][$productId]); //On enleve l'élément du panier
             }
         }
-
-
-
+        if (!isset($_SESSION["panier"])){
+            $_SESSION["panier"]=[];
+        }
+        else{
+            if (!isset($_SESSION["prixTotal"])) {
+                $_SESSION["prixTotal"] = 0;
+            }
+            else{
+                if (count($_SESSION["panier"]) == 0){ //Si pas d'éléments prixTotal = 0
+                    $_SESSION["prixTotal"] = 0;
+                }
+                else{
+                    $_SESSION["prixTotal"] = 0;
+                    foreach ($_SESSION["panier"] as $item) {
+                        $_SESSION["prixTotal"] += $item["price"] * $item["productQty"];
+                    }
+                }
+            }
+        }
         $panier = isset($_SESSION["panier"]) && is_iterable($_SESSION["panier"]) && count($_SESSION["panier"]) > 0 ? $_SESSION["panier"] : [];
         $this->_productManager = new ProductManager;
         $products = $this->_productManager->getProductsById(array_keys($panier));

@@ -29,7 +29,7 @@
                     ?>
                     <?php foreach ($categories as $category) : ?>
                         <li class="nav-item">
-                            <?php if(isset($_GET['cat'])) : ?>
+                            <?php if(isset($_GET['cat'])) : ?> <!-- On met en gras l'onglet sur lequel on se trouve -->
                                 <?php if($category->getId() == $_GET['cat']) : ?>
                                     <a class="nav-link active" href="index.php?url=categories&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
                                 <?php else :?>
@@ -42,18 +42,33 @@
                     <?php endforeach;?>
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php?url=connexion">Connexion</a>
+                    <li class="nav-item">  <!-- On met en gras l'onglet sur lequel on se trouve -->
+                        <?php if(isset($_GET['url']) && $_GET['url'] == "connexion") : ?>
+                            <a class="nav-link active" href="index.php?url=connexion">Connexion</a>
+                        <?php else:?>
+                            <a class="nav-link" href="index.php?url=connexion">Connexion</a>
+                        <?php endif;?>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?url=panier">Panier <?php
-                            if(isset($_SESSION["panier"])){
-                                if($_SESSION["panier"]!=[]){
-                                    echo("(" . count($_SESSION["panier"]) .")");
+                        <?php if(isset($_GET['url']) && $_GET['url'] == "panier") : ?>
+                            <a class="nav-link active" href="index.php?url=panier">Panier <?php
+                                if(isset($_SESSION["panier"])){
+                                    if($_SESSION["panier"]!=[]){
+                                        echo("(" . count($_SESSION["panier"]) .")");
+                                    }
                                 }
-                            }
-                            ?>
-                        </a>
+                                ?>
+                            </a>
+                        <?php else:?>
+                            <a class="nav-link" href="index.php?url=panier">Panier <?php
+                                if(isset($_SESSION["panier"])){
+                                    if($_SESSION["panier"]!=[]){
+                                        echo("(" . count($_SESSION["panier"]) .")");
+                                    }
+                                }
+                                ?>
+                            </a>
+                        <?php endif;?>
                     </li>
                 </ul>
             </div>
