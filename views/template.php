@@ -39,7 +39,16 @@
                         <a class="nav-link" href="index.php?url=connexion">Connexion</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?url=panier">Panier</a>
+                        <a class="nav-link" href="index.php?url=panier">Panier <?php
+                                if($_SESSION["panier"]!=[]){
+                                    echo ("(");
+                                    echo(count($_SESSION["panier"]));
+                                    echo (")");
+                                }
+
+
+                            ?>
+                        </a>
                     </li>
                 </ul>
             </div>

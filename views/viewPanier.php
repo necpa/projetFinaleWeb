@@ -27,8 +27,9 @@
                     <p class="mb-3">Prix total : <?= ($product->getPrice()) * $panierProducts[$product->getId()]['productQty'] ?>€</p>
                 </div>
                 <div class="col-12 col-lg-2 col-xl-2">
-                        <input value="<?= $panierProducts[$product->getId()]['productQty'] ?>" type="number" name="modifierQuantite[<?= $product->getId() ?>]" max="<?= $product->getQuantity()?>" min="0" required>
-                        <button type="submit" name="submitQuantite" class="btn btn-primary">Modifier la Quantité</button>
+                    <input value="<?= $panierProducts[$product->getId()]['productQty'] ?>" type="number" name="modifierQuantite[<?= $product->getId() ?>]" max="<?= $product->getQuantity()?>" min="0" required>
+                    <button type="submit" name="suprQuantite" class="mb-1 btn btn-primary">X</button>
+                    <button type="submit" name="submitQuantite" class="btn btn-primary">Modifier la Quantité</button>
                 </div>
             </div>
         <?php endforeach; ?>
