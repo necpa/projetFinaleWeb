@@ -51,16 +51,11 @@
                     </li>
                     <li class="nav-item">
                         <?php if(isset($_GET['url']) && $_GET['url'] == "panier") : ?>
-                            <a class="nav-link active" href="index.php?url=panier">Panier <?php
-                                if(isset($_SESSION["panier"])){
-                                    if($_SESSION["panier"]!=[]){
-                                        echo("(" . count($_SESSION["panier"]) .")");
-                                    }
-                                }
-                                ?>
-                            </a>
+                            <a class="nav-link active" href="index.php?url=panier">Panier</a>
                         <?php else:?>
-                            <a class="nav-link" href="index.php?url=panier">Panier <?php
+                            <a class="nav-link " href="index.php?url=panier">
+                                <span>Panier</span>
+                                <?php
                                 if(isset($_SESSION["panier"])){
                                     if($_SESSION["panier"]!=[]){
                                         echo("(" . count($_SESSION["panier"]) .")");

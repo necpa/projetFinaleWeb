@@ -4,9 +4,7 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body p-4">
-
                         <div class="row">
-
                             <div class="col-lg-12">
                                 <h5 class="mb-3"><a href="index.php?url=categories&cat=1" class="text-body"><i
                                                 class="fas fa-long-arrow-alt-left me-2"></i> <- Retour sur la boutique</a></h5>

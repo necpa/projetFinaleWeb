@@ -67,4 +67,34 @@ a, a:hover{
 .photoPanier{
     width:200px
 }
+/* Animation du bouton Panier*/
+.cart{
+    background: #fdbb2d;
+    border-radius: 10px;
+    color: black;
+    font-size: 15px;
+    font-weight: bolder;
+    border: 2px solid black;
+}
+.cart svg{
+    position: absolute;
+    margin-left: 0px;
+    transition: 400ms;
+    color: transparent;
+}
+.cart span{
+    transition: 400ms;
+}
+.cart:hover span{
+    margin-right: 30px;
+}
+.cart:hover svg{
+    margin-top: 3px;
+    margin-left: -20px;
+    color: black;
+}
+button:focus{
+    outline: none;
+
+}
 
