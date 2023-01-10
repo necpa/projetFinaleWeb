@@ -10,10 +10,11 @@ class ControllerRegister
 
     public function __construct($url)
     {
-        if (isset($_REQUEST['username']) && isset($_REQUEST['password']))
+        if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['email']))
         {
 	        $username = stripslashes($_REQUEST['username']);    // récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
 	        $password = stripslashes($_REQUEST['password']);    // récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
+            $email = stripslashes($_REQUEST['email']);
             $this->_loginManager = new LoginManager;
             $usernameAlreadyExists = $this->_loginManager->usernameAlreadyExists($username);
             if($usernameAlreadyExists)
@@ -23,7 +24,7 @@ class ControllerRegister
             }
             else
             {
-                $this->_loginManager->newLogin($username,$password);
+                $this->_loginManager->newLogin($username,$password,$email);
                 $this->_view = new View('Acceuil');
                 $this->_view->generate();
             }

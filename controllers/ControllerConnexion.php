@@ -7,6 +7,7 @@ class ControllerConnexion
 
     private $_view;
     private $_loginManager;
+    private $_customerManager;
 
     public function __construct($url)
     {
