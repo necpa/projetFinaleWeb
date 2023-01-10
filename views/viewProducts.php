@@ -1,28 +1,33 @@
 
-        <div class="card mb-3" style="max-width: 540px;">
+        <div class="card mb-3" style="max-width: 700px;">
             <div class="row g-0">
                 <div class="col-md-4">
                     <img src="<?= "productimages/".$product->getImage(); ?>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title"><?= $product->getName(); ?></h5>
-                        <p class="card-text"><?= $product->getDescription(); ?></p>
-                        <p class="card-text"><small class="text-muted">Notre prix : <?= $product->getPrice(); ?> €</small></p>
-                        <!-- On vérifie les stocks, si il en reste on affiche le boutton ajouter au panier -->
-                        <?php if ($product->getQuantity() > 0) : ?>
-                            <form method="post" class="card-text" action="index.php?url=products&id=<?=$product->getId() ?>">
-                                <input type="number" name = "qty" min="1" max="<?= $product->getQuantity() ?>" required>
-                                <button type="submit" name="submitQty" class="btn btn-primary">Ajouter au Panier</button>
-                            </form>
-                        <?php else : ?>
-                            <p>Rupture de stock pour ce produit</p>
-                        <?php endif; ?>
+
+                            <h5 class="card-title"><?= $product->getName(); ?></h5>
+                            <p class="card-text"><?= $product->getDescription(); ?></p>
+                            <p class="card-text"><small class="text-muted">Notre prix : <?= $product->getPrice(); ?> €</small></p>
+
+
+                            <!-- On vérifie les stocks, si il en reste on affiche le boutton ajouter au panier -->
+                            <?php if ($product->getQuantity() > 0) : ?>
+                                <form method="post" class="card-text" action="index.php?url=products&id=<?=$product->getId() ?>">
+                                    <input type="number" name = "qty" min="1" max="<?= $product->getQuantity() ?>" placeholder="Qte" required>
+                                    <input type="number" name = "prix" value=<?= $product->getPrice(); ?> class="d-none">
+                                    <button type="submit" name="submitQty" class="btn">Ajouter au Panier</button>
+                                </form>
+                            <?php else : ?>
+                                <p class="card-text"><small class="text-muted">Rupture de stock pour ce produit</small></p>
+                            <?php endif; ?>
+
                     </div>
                 </div>
             </div>
         </div>
-
+    <!-- On affiche la liste des commentaires-->
     <h1>Commentaires :</h1>
     <?php foreach ($reviews as $review) : ?>
             <div class="commentaire">
@@ -41,6 +46,8 @@
                 <?= $review->getDescription()?>
             </div>
     <?php endforeach; ?>
+
+        <!-- On affiche le formulaire d'ajout de commentaire-->
     <div class="card w-50 mb-3">
         <div class="card-header ">
             Donnez votre avis sur ce produit :

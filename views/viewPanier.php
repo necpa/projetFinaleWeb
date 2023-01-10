@@ -1,39 +1,76 @@
-<?php
-    // session_start();
-    //order_id product_id quantity
+<section class="h-100 h-custom" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-4">
 
-?>
-<form method="post" action="index.php?url=panier">
-    <?php if(count($products) > 0): ?>
-        <?php foreach ($products as $product): ?>
-            <div class="row">
-                <div class="col-12 col-lg-6 col-xl-4">
-                    <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    <img src="<?= "productimages/".$product->getImage(); ?>" class="img-fluid rounded-start photoPanier" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $product->getName(); ?></h5>
-                                        <p class="card-text"><small class="text-muted"> Quantité : <?= $panierProducts[$product->getId()]['productQty'] ?></small></p>
-                                    </div>
-                                </div>
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <h5 class="mb-3"><a href="index.php?url=categories&cat=1" class="text-body"><i
+                                                class="fas fa-long-arrow-alt-left me-2"></i>Retour sur la boutique</a></h5>
+                                <hr>
+                                <form method="post" action="index.php?url=panier">
+                                    <?php if(count($products) > 0): ?>
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <div>
+                                                <p class="mb-1">Votre panier :
+                                                    <?php
+                                                    if(isset($_SESSION["panier"])){
+                                                        if($_SESSION["panier"]!=[]){
+                                                            if (count($_SESSION["panier"]) == 1){
+                                                                echo("(" . count($_SESSION["panier"]) ."article)");
+                                                            }
+                                                            else{
+                                                                echo("(" . count($_SESSION["panier"]) ."articles)");
+                                                            }
+                                                        }
+                                                    }
+                                                    ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <?php foreach ($products as $product): ?>
+                                            <div class="row">
+                                                <div class="col-12 col-lg-10 col-xl-10">
+                                                    <div class="card mb-3">
+                                                        <div class="row g-0">
+                                                            <div class="col-md-2">
+                                                                <img src="<?= "productimages/".$product->getImage(); ?>" class="img-fluid rounded-start photoPanier" alt="...">
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="card-body row">
+                                                                    <div class="col-lg-6 col-xl-6">
+                                                                        <h5 class="card-title"><?= $product->getName(); ?></h5>
+                                                                        <p class="card-text"><small class="text-muted"> Quantité : <?= $panierProducts[$product->getId()]['productQty'] ?></small></p>
+                                                                    </div>
+                                                                    <div class="col-12 col-lg-3 col-xl-3">
+                                                                        <input value="<?= $panierProducts[$product->getId()]['productQty'] ?>" type="number" name="modifierQuantite[<?= $product->getId() ?>]" max="<?= $product->getQuantity()?>" min="0" required>
+                                                                        <button type="submit" name="suprQuantite" class="mb-1 btn btn-primary">X</button>
+                                                                        <button type="submit" name="submitQuantite" class="btn btn-primary">Modifier la Quantité</button>
+                                                                    </div>
+                                                                    <div class="col-12 col-lg-3 col-xl-3">
+                                                                        <p class="mb-3">Prix unitaire : <?= $product->getPrice(); ?>€</p>
+                                                                        <p class="mb-3">Prix total : <?= ($product->getPrice()) * $panierProducts[$product->getId()]['productQty'] ?>€</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        Le panier est vide
+                                    <?php endif;?>
+                                </form>
                             </div>
                         </div>
-                </div>
-                <div class="col-12 col-lg-2 col-xl-2">
-                    <p class="mb-3">Prix unitaire : <?= $product->getPrice(); ?>€</p>
-                    <p class="mb-3">Prix total : <?= ($product->getPrice()) * $panierProducts[$product->getId()]['productQty'] ?>€</p>
-                </div>
-                <div class="col-12 col-lg-2 col-xl-2">
-                    <input value="<?= $panierProducts[$product->getId()]['productQty'] ?>" type="number" name="modifierQuantite[<?= $product->getId() ?>]" max="<?= $product->getQuantity()?>" min="0" required>
-                    <button type="submit" name="suprQuantite" class="mb-1 btn btn-primary">X</button>
-                    <button type="submit" name="submitQuantite" class="btn btn-primary">Modifier la Quantité</button>
+                    </div>
                 </div>
             </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        Le panier est vide
-    <?php endif;?>
-</form>
+        </div>
+    </div>
+</section>

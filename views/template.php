@@ -23,14 +23,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
                     <?php
                         $categoryManager = new CategoryManager();
                         $categories = $categoryManager->getCategories();
                     ?>
                     <?php foreach ($categories as $category) : ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php?url=categories&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
+                            <?php if(isset($_GET['cat'])) : ?>
+                                <?php if($category->getId() == $_GET['cat']) : ?>
+                                    <a class="nav-link active" href="index.php?url=categories&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
+                                <?php else :?>
+                                    <a class="nav-link" href="index.php?url=categories&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
+                                <?php endif;?>
+                            <?php else:?>
+                                <a class="nav-link" href="index.php?url=categories&cat=<?= $category->getId(); ?>"><?= ucfirst($category->getName()); ?></a>
+                            <?php endif;?>
                         </li>
                     <?php endforeach;?>
                 </ul>
@@ -40,13 +47,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?url=panier">Panier <?php
+                            if(isset($_SESSION["panier"])){
                                 if($_SESSION["panier"]!=[]){
-                                    echo ("(");
-                                    echo(count($_SESSION["panier"]));
-                                    echo (")");
+                                    echo("(" . count($_SESSION["panier"]) .")");
                                 }
-
-
+                            }
                             ?>
                         </a>
                     </li>

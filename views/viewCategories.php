@@ -13,7 +13,11 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?= $product->getName(); ?></h5>
                                 <p class="card-text"><?= $product->getDescription(); ?></p>
-                                <p class="card-text"><small class="text-muted">Notre prix : <?= $product->getPrice(); ?> €</small></p>
+                                <?php if ($product->getQuantity() > 0) : ?>
+                                    <p class="card-text"><small class="text-muted">Notre prix : <?= $product->getPrice(); ?> €</small></p>
+                                <?php else : ?>
+                                    <p class="card-text"><small class="text-muted">Rupture de stock pour ce produit</small></p>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
