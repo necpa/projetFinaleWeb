@@ -33,6 +33,7 @@
     <!-- On affiche la liste des commentaires-->
     <h1>Commentaires :</h1>
     <?php foreach ($reviews as $review) : ?>
+
             <div class="commentaire">
                 <div>
                     <img class="photoProfil ligne" src="productimages/<?php echo($review->getPhotoUser())?>">

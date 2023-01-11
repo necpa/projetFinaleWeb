@@ -6,8 +6,16 @@
                     <div class="card-body p-4">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h5 class="mb-3"><a href="index.php?url=categories&cat=1" class="text-body"><i
-                                                class="fas fa-long-arrow-alt-left me-2"></i> <- Retour sur la boutique</a></h5>
+                                <h5 class="mb-3">
+                                    <a href="index.php?url=categories&cat=1" class="text-body">
+                                        <i class="fas fa-long-arrow-alt-left me-2"></i> <- Retour sur la boutique
+                                    </a>
+                                </h5>
+                                <?php if ((!isset($_SESSION['is_log']) || !$_SESSION['is_log']) && count($_SESSION["panier"]) > 0): //Si le client n'est pas log on le conseille de se connecter ?>
+                                    <a href="index.php?url=connexion" class="text-body">
+                                        Cliquez ici pour vous <strong>connecter</strong>, cela simplifiera la finalisation de votre commande
+                                    </a>
+                                <?php endif;?>
                                 <hr>
                                 <form method="post" action="index.php?url=panier">
                                     <?php if(count($products) > 0): ?>
@@ -68,7 +76,7 @@
                                         <div class="card col-12 col-lg-3 col-xl-3">
                                             <p class="text-center m-0">Prix total : <?php echo($_SESSION["prixTotal"])?> €</p>
                                         </div>
-                                        <a href="index.php?url=adresse" class="col-12 col-lg-3 col-xl-3">Étape suivante</a>
+                                        <a href="index.php?url=adresse" class="col-12 col-lg-3 col-xl-3"><strong>Étape suivante</strong></a>
                                     </div>
                                     <?php else: ?>
                                         Le panier est vide

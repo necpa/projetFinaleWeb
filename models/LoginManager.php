@@ -57,4 +57,5 @@ class LoginManager extends Model
         $_SESSION['username'] = $username;
         $_SESSION['is_log'] = true;
     }
+
 }

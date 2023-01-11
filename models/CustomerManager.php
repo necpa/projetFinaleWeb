@@ -5,4 +5,9 @@ class CustomerManager extends Model
     {
         return $this->getAll('customers','Customer');
     }
+
+    public function getOneCustomer($id){
+        $customer = $this->getOne("customers", $id, customer::class);
+        return $customer;
+    }
 }

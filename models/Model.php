@@ -19,6 +19,45 @@ abstract class Model
         return self::$_bdd;
     }
 
+    public function modifyInTable($table, $obj, $sets, $wheres )
+    {
+        $sql = "UPDATE " . $table;
+        if(count($sets)){
+            $sql .= " SET ";
+            $estPremier = true;
+            foreach($sets as $setKey => $setValue){
+                if(!$estPremier){
+                    $sql .= " , ";
+                }
+                if(is_string($setValue)){
+                    $setValue = '"'. $setValue.'"';
+                }
+                $sql .= $setKey . " = " . $setValue;
+                $estPremier = false;
+            }
+        }
+        if(count($sets)){
+            $sql .= " WHERE ";
+            $estPremier = true;
+            foreach($wheres as $whereKey => $whereValue){
+                if(!$estPremier){
+                    $sql .= " AND ";
+                }
+                if(is_string($whereValue))
+                {
+                    $whereValue = '"'. $whereValue.'"';
+                }
+                $sql .= $whereKey . " = " . $whereValue;
+                $estPremier = false;
+            }
+
+        }
+        else{
+            return null;
+        }
+        return $this->fetch($sql, $obj);
+    }
+
     protected function getAll($table, $obj, $andWheres = [])
     {
         $sql = "SELECT * FROM " . $table;
