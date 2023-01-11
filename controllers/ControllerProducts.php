@@ -51,12 +51,9 @@ class ControllerProducts
         //Formulaire d'ajout au panier :
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submitQty'])) {
             $qty = $_POST['qty']; //On récupére la quantité à ajouter au panier
-            $price = (float)$_POST['prix']; //On récupére le prix du produit
             $_SESSION["panier"][$productId]=[]; //On rentre les valeurs dans la variable de session
             $_SESSION["panier"][$productId] = ["productId" => $productId];
             $_SESSION["panier"][$productId]["productQty"] = $qty;
-            $_SESSION["panier"][$productId]["price"] = $price;
-
             // $_SESSION = ["panier" => [ "24" => ['productId' => 24, 'productQty' => 2], "8" => ['productId' => 8, 'productQty' => 1] ]];
 
         }

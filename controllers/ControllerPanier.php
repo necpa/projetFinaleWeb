@@ -30,6 +30,9 @@ class ControllerPanier
                 unset($_SESSION["panier"][$productId]); //On enleve l'élément du panier
             }
         }
+        $panier = isset($_SESSION["panier"]) && is_iterable($_SESSION["panier"]) && count($_SESSION["panier"]) > 0 ? $_SESSION["panier"] : [];
+        $this->_productManager = new ProductManager;
+        $products = $this->_productManager->getProductsById(array_keys($panier));
         if (!isset($_SESSION["panier"])){
             $_SESSION["panier"]=[];
         }
@@ -43,15 +46,13 @@ class ControllerPanier
                 }
                 else{
                     $_SESSION["prixTotal"] = 0;
-                    foreach ($_SESSION["panier"] as $item) {
-                        $_SESSION["prixTotal"] += $item["price"] * $item["productQty"];
+                    foreach ($products as $product) {
+                        $_SESSION["panier"][$product->getId()]["price"] = $product->getPrice();
+                        $_SESSION["prixTotal"] += $_SESSION["panier"][$product->getId()]["price"] * $_SESSION["panier"][$product->getId()]["productQty"];
                     }
                 }
             }
         }
-        $panier = isset($_SESSION["panier"]) && is_iterable($_SESSION["panier"]) && count($_SESSION["panier"]) > 0 ? $_SESSION["panier"] : [];
-        $this->_productManager = new ProductManager;
-        $products = $this->_productManager->getProductsById(array_keys($panier));
         $this->_view = new View('Panier');
         $this->_view->generate(array('products' => $products, 'panierProducts' => $panier));
     }

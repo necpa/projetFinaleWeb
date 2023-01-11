@@ -16,7 +16,6 @@
                             <?php if ($product->getQuantity() > 0) : ?>
                                 <form method="post" class="card-text" action="index.php?url=products&id=<?=$product->getId() ?>">
                                     <input type="number" name = "qty" min="1" max="<?= $product->getQuantity() ?>" placeholder="Qte" required>
-                                    <input type="number" name = "prix" value=<?= $product->getPrice(); ?> class="d-none">
                                     <button type="submit" name="submitQty" class="cart">
                                         <span>Ajouter au Panier</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
@@ -27,7 +26,6 @@
                             <?php else : ?>
                                 <p class="card-text"><small class="text-muted">Rupture de stock pour ce produit</small></p>
                             <?php endif; ?>
-
                     </div>
                 </div>
             </div>
