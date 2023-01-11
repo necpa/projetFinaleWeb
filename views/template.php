@@ -41,14 +41,27 @@
                         </li>
                     <?php endforeach;?>
                 </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">  <!-- On met en gras l'onglet sur lequel on se trouve -->
-                        <?php if(isset($_GET['url']) && $_GET['url'] == "connexion") : ?>
-                            <a class="nav-link active" href="index.php?url=connexion">Connexion</a>
-                        <?php else:?>
-                            <a class="nav-link" href="index.php?url=connexion">Connexion</a>
-                        <?php endif;?>
-                    </li>
+                <ul class="nav navbar-nav nav-flex-icons mb-2 mb-lg-0">
+                    <?php if(isset($_SESSION['is_log'])) : ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <?php echo $_SESSION['username']?>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Profil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Deconnexion</a></li>
+                            </ul>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">  <!-- On met en gras l'onglet sur lequel on se trouve -->
+                            <?php if(isset($_GET['url']) && $_GET['url'] == "connexion") : ?>
+                                <a class="nav-link active" href="index.php?url=connexion">Connexion</a>
+                            <?php else:?>
+                                <a class="nav-link" href="index.php?url=connexion">Connexion</a>
+                            <?php endif;?>
+                        </li>
+                    <?php endif;?>
                     <li class="nav-item">
                         <?php if(isset($_GET['url']) && $_GET['url'] == "panier") : ?>
                             <a class="nav-link active" href="index.php?url=panier">Panier</a>
