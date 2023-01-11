@@ -36,7 +36,7 @@ abstract class Model
                 $estPremier = false;
             }
         }
-        if(count($sets)){
+        if(count($wheres)){
             $sql .= " WHERE ";
             $estPremier = true;
             foreach($wheres as $whereKey => $whereValue){
