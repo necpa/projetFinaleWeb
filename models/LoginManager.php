@@ -11,6 +11,45 @@ class LoginManager extends Model
         $_SESSION['customer_id'] = $res[0]->getCustomerId();
         $_SESSION['username'] = $username;
         $_SESSION['is_log'] = true;
+        $res = $this->getAll('orders', Order::class, ['customer_id' => $_SESSION['customer_id'], 'status' => '0']);
+        if (!empty($res))
+        {
+            $_SESSION['order_id'] = $res[0]->getId();
+            $res = $this->getAll('orderitems', OrderItem::class, ['order_id' => $_SESSION['order_id']]);
+            if(isset($_SESSION['panier']))
+            {
+                if ($_SESSION['panier'] == [])
+                {
+                    foreach($res as $orderitem)
+                    {
+                        $product = ($this->getAll('products', Product::class,['id' => $orderitem->getProductId()]))[0];
+                        $_SESSION['panier'][$product->getId()]['productQty']=$orderitem->getQuantity();
+                        $_SESSION['panier'][$product->getId()]['price']=$product->getPrice();
+                    }
+                }
+                else
+                {
+                    foreach($res as $orderitem)
+                    {
+                        $product = ($this->getAll('products', Product::class,['id' => $orderitem->getProductId()]))[0];
+                        if(!isset($_SESSION['panier'][$product->getId()]))
+                        {
+                            $_SESSION['panier'][$product->getId()]['productQty']=$orderitem->getQuantity();
+                            $_SESSION['panier'][$product->getId()]['price']=$product->getPrice();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach($res as $orderitem)
+                {
+                    $product = ($this->getAll('products', Product::class,['id' => $orderitem->getProductId()]))[0];
+                    $_SESSION['panier'][$product->getId()]['productQty']=$orderitem->getQuantity();
+                    $_SESSION['panier'][$product->getId()]['price']=$product->getPrice();
+                }
+            }
+        }
         return true;
     }
 

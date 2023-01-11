@@ -55,7 +55,12 @@ class ControllerProducts
             $_SESSION["panier"][$productId] = ["productId" => $productId];
             $_SESSION["panier"][$productId]["productQty"] = $qty;
             // $_SESSION = ["panier" => [ "24" => ['productId' => 24, 'productQty' => 2], "8" => ['productId' => 8, 'productQty' => 1] ]];
-
+            $_SESSION["prixTotal"] = 0;
+            $products = $this->_productManager->getProductsById(array_keys($_SESSION['panier']));
+            foreach ($products as $product) {
+                $_SESSION["panier"][$product->getId()]["price"] = $product->getPrice();
+                $_SESSION["prixTotal"] += $_SESSION["panier"][$product->getId()]["price"] * $_SESSION["panier"][$product->getId()]["productQty"];
+            }
         }
         $this->_view = new View('Products');
         $this->_view->generate(array('product' => $produit, 'reviews' => $reviews));
