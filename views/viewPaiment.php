@@ -118,12 +118,14 @@
             <?php if($_SESSION["confirm_payment"]) :?>
                 <div class="card mb-3">
                     <h5 class="card-header">Vous avez choisi de régler par <strong>chèque</strong></h5>
-                    <span class="mb-3">Votre commande est confirmée, veuillez nous envoyer un chèque de <?= $_SESSION["prixTotal"] ?>€ à l'ordre "Web4Shop" à l'adresse suivante :</span>
-                    <span>WEB4SHOP</span>
-                    <span>13 chemin du biscuit</span>
-                    <span>69006</span>
-                    <span class="mb-3">Lyon</span>
-                    <span>Votre commande sera expediée lors de la récéption de votre paiment.</span>
+                    <div class="card-body">
+                        <p class="mb-3">Votre commande est confirmée, veuillez nous envoyer un chèque de <?= $_SESSION["prixTotal"] ?>€ à l'ordre "Web4Shop" à l'adresse suivante :</p>
+                        WEB4SHOP<br>
+                        13 chemin du biscuit<br>
+                        69006<br>
+                        Lyon</p>
+                        <p>Votre commande sera expediée lors de la récéption de votre paiment.</p>
+                    </div>
                 </div>
                 <a href="facture.php">
                     <p>
