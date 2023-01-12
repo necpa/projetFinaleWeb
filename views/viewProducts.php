@@ -53,7 +53,7 @@
 
         <!-- On affiche le formulaire d'ajout de commentaire-->
     <div class="card w-50 mb-3">
-        <div class="card-header ">
+        <div class="card-header">
             Donnez votre avis sur ce produit :
         </div>
         <div class="card-body">
