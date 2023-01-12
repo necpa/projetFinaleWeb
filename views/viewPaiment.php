@@ -104,34 +104,55 @@
         </div>
     </div>
 <?php else :?> <!-- Si le mode de paiment est validé on affiche la confimation-->
-    <form action="index.php?url=paiment" method="post" class="mb-3">
-        <button type="submit" name="retourPaiment" class="btn btn-warning">Changer de moyen de paiment</button>
-    </form>
-    <?php if($_SESSION["payment_type"] =="cheque") :?>
-        <div class="card mb-3">
-            <h5 class="card-header">Vous avez choisi de régler par <strong>chèque</strong></h5>
-            <span class="mb-3">Votre commande est confirmée, veuillez nous envoyer un chèque de <?= $_SESSION["prixTotal"] ?>€ à l'ordre "Web4Shop" à l'adresse suivante :</span>
-            <span>WEB4SHOP</span>
-            <span>13 chemin du biscuit</span>
-            <span>69006</span>
-            <span class="mb-3">Lyon</span>
-            <span>Votre commande sera expediée lors de la récéption de votre paiment.</span>
-        </div>
-        <a href="#">
-            <p>
-                Cliquez <strong>ici</strong> pour obtenir votre facture
-            </p>
-        </a>
-    <?php endif;?>
-    <?php if($_SESSION["payment_type"] =="paypal") :?>
-        <div class="card mb-3">
-            <p class="card-body">Vous avez choisi de régler via <strong>PayPal</strong></p>
-            <p class="card-body">Votre commande est confirmée, elle sera expédiée très prochainement.</p>
-        </div>
-        <a href="#">
-            <p>
-                Cliquez <strong>ici</strong> pour obtenir votre facture
-            </p>
-        </a>
+    <?php if(!isset($_SESSION["confirm_payment"]) || !$_SESSION["confirm_payment"]) :?>
+        <form action="index.php?url=paiment" method="post" class="mb-3">
+            <button type="submit" name="retourPaiment" class="btn btn-warning">Changer de moyen de paiment</button>
+        </form>
+        <form action="index.php?url=paiment" method="post" class="mb-3">
+            <button type="submit" name="validerCommande" class="btn btn-success">Valider la commande</button>
+        </form>
     <?php endif;?>
 <?php endif;?>
+        <?php if(isset($_SESSION["confirm_payment"]) && isset($_SESSION["payment_type"])) :?>
+        <?php if($_SESSION["payment_type"] =="cheque") :?>
+            <?php if($_SESSION["confirm_payment"]) :?>
+                <div class="card mb-3">
+                    <h5 class="card-header">Vous avez choisi de régler par <strong>chèque</strong></h5>
+                    <span class="mb-3">Votre commande est confirmée, veuillez nous envoyer un chèque de <?= $_SESSION["prixTotal"] ?>€ à l'ordre "Web4Shop" à l'adresse suivante :</span>
+                    <span>WEB4SHOP</span>
+                    <span>13 chemin du biscuit</span>
+                    <span>69006</span>
+                    <span class="mb-3">Lyon</span>
+                    <span>Votre commande sera expediée lors de la récéption de votre paiment.</span>
+                </div>
+                <a href="facture.php">
+                    <p>
+                        Cliquez <strong>ici</strong> pour obtenir votre facture
+                    </p>
+                </a>
+                    <?php unset($_SESSION["confirm_payment"]) ;
+                    unset($_SESSION["payment_type"]);
+                    ?>
+            <?php endif;?>
+        <?php endif;?>
+    <?php endif;?>
+    <?php if(isset($_SESSION["confirm_payment"]) && isset($_SESSION["payment_type"])) :?>
+        <?php if($_SESSION["payment_type"] =="paypal") :?>
+            <?php if($_SESSION["confirm_payment"]) :?>
+                <div class="card mb-3">
+                    <p class="card-body">Vous avez choisi de régler via <strong>PayPal</strong></p>
+                    <p class="card-body">Votre commande est confirmée, elle sera expédiée très prochainement.</p>
+                </div>
+                <a href="facture.php">
+                    <p>
+                        Cliquez <strong>ici</strong> pour obtenir votre facture
+                    </p>
+                </a>
+            <!-- Attention à bien mettre le moyen de paiment dans la bd avant d'unset-->
+                <?php unset($_SESSION["confirm_payment"]) ;
+                unset($_SESSION["payment_type"]);
+                ?>
+            <?php endif;?>
+        <?php endif;?>
+    <?php endif;?>
+

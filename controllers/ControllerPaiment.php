@@ -23,7 +23,10 @@ class ControllerPaiment
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['retourPaiment']))){
             unset($_SESSION["payment_type"]);
         }
-
+        //Si l'utilisateur valide le paiment
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['validerCommande'])){
+            $_SESSION["confirm_payment"] = true;
+        }
 
         $this->_view = new View('Paiment');
         $this->_view->generate();
