@@ -6,6 +6,7 @@ class ControllerDeconnexion
 {
 
     private $_orderManager;
+    private $_orderItemManager;
 
     public function __construct($url)
     {
@@ -19,7 +20,8 @@ class ControllerDeconnexion
                     if(isset($_SESSION['order_id']))
                     {
                         $date = date('Y-m-d');
-                        $this->_orderManager->modifyInTable('orders', Order::class, ['date' => $date],['id' => $_SESSION['order_id']]);
+                        $order_id = $_SESSION['order_id'];
+                        $this->_orderManager->modifyInTable('orders', Order::class, ['date' => $date],['id' => $order_id]);
                     }
                     else
                     {
@@ -30,6 +32,8 @@ class ControllerDeconnexion
                         $cond = ['id' => $order_id,'customer_id' => $customer_id,'registered' => '1', 'date' => $date, 'status' => '0', 'session' => $session, 'total' => $total];
                         $this->_orderManager->addToTableColumn('orders', $cond);
                     }
+                    $this->_orderItemManager = new OrderItemManager;
+                    $this->_orderItemManager->clearOrderItem($order_id);
                     foreach($_SESSION['panier'] as $product)
                         {
                             $orderItems_id = $this->_orderManager->maxId('orderitems') + 1;

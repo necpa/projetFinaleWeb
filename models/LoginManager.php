@@ -23,6 +23,7 @@ class LoginManager extends Model
                     foreach($res as $orderitem)
                     {
                         $product = ($this->getAll('products', Product::class,['id' => $orderitem->getProductId()]))[0];
+                        $_SESSION['panier'][$product->getId()]['productId']=$orderitem->getQuantity();
                         $_SESSION['panier'][$product->getId()]['productQty']=$orderitem->getQuantity();
                         $_SESSION['panier'][$product->getId()]['price']=$product->getPrice();
                     }

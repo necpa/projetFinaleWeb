@@ -89,7 +89,7 @@ abstract class Model
     }
 
     protected function getOne($table, $id, $obj){
-        $rows = $this->fetch('SELECT * FROM ' . $table . " WHERE id = " . $id, $obj);
+        $rows = $this->fetch('SELECT * FROM ' . $table . " WHERE id = " . '"'.$id.'"', $obj);
         if(count($rows)){
             return $rows[0];
         }

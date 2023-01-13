@@ -76,7 +76,7 @@
                                         <div class="card col-12 col-lg-3 col-xl-3">
                                             <p class="text-center m-0">Prix total : <?php echo($_SESSION["prixTotal"])?> €</p>
                                         </div>
-                                        <a href="index.php?url=adresses" class="col-12 col-lg-3 col-xl-3"><strong>Étape suivante</strong></a>
+                                        <a href="index.php?url=adresse" class="col-12 col-lg-3 col-xl-3"><strong>Étape suivante</strong></a>
                                     </div>
                                     <?php else: ?>
                                         Le panier est vide
