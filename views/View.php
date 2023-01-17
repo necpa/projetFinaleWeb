@@ -19,7 +19,7 @@ class View
         echo $view;
     }
 
-    private function generateFile($file, $data)
+    public function generateFile($file, $data)
     {
         if(file_exists($file))
         {

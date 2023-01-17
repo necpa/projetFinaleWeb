@@ -145,7 +145,7 @@
                     <p class="card-body">Vous avez choisi de régler via <strong>PayPal</strong></p>
                     <p class="card-body">Votre commande est confirmée, elle sera expédiée très prochainement.</p>
                 </div>
-                <a href="facture.php">
+                <a href="index.php?url=facture">
                     <p>
                         Cliquez <strong>ici</strong> pour obtenir votre facture
                     </p>
