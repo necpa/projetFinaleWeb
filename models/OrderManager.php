@@ -7,12 +7,10 @@ class OrderManager extends Model
     }
     public function getOrderById($id)
     {
-        if(isset($_SESSION['order_id'])){
-            return $this->getAll('orders','Order', ["id" => $_SESSION['order_id']]);
-        }
-        else{
-            return NULL;
-        }
-
+        return $this->getAll('orders',Order::class, ["id" => $id]);
+    }
+    public function getOrderByCustId($id)
+    {
+        return $this->getAll('orders',Order::class, ["customer_id" => $id]);
     }
 }

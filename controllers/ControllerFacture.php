@@ -4,6 +4,7 @@ class ControllerFacture
 {
     private $_view;
     private $_orderManager;
+    private $_deliveryAddresseManager;
     public function __construct($url)
     {
         if(isset($url) && count(array($url)) > 1)
@@ -13,9 +14,14 @@ class ControllerFacture
         else
         {
             $this->_orderManager = new OrderManager;
-            $order = $this->_orderManager->getOrderById($_SESSION['order_id']); //On récupére la commande
+            $orders = $this->_orderManager->getOrderByCustId($_SESSION[]); //On récupére la commande
+            $this->_deliveryAddresseManager = new DeliveryAddresseManager;
+            foreach ($orders as $order){
+                $delivery_add_id = $order->getDeliveryAddId();
+            }
+            $delivery_address = $this->_deliveryAddresseManager->getAddressById($delivery_add_id);
             $this->_view = new View('Facture');
-            $this->_view->generate(array('order' => $order));
+            $this->_view->generate(array('order' => $order, 'delivery_adress' => $delivery_address));
         }
     }
 

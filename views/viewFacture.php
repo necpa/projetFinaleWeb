@@ -17,5 +17,4 @@ $dompdf->render();
 $fichier = 'facture-web4shop.pdf';
 //Output the generated PDF to Browser
 //$dompdf->stream($fichier);
-
 ?>

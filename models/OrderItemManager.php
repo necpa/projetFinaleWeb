@@ -11,4 +11,9 @@ class OrderItemManager extends Model
         $sql = "DELETE FROM orderitems WHERE order_id = " .'"'. $order_id .'"';
         $this->addToTable($sql);
     }
+
+    public function getOrderItemsByOrderId($id)
+    {
+        return $this->getAll('OrderItems','OrderItem',['order_id' => $id]);
+    }
 }

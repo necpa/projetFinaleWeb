@@ -50,6 +50,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="index.php?url=profil">Profil</a></li>
                                 <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="index.php?url=commandes">Historique des commandes</a></li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="index.php?url=deconnexion">Deconnexion</a></li>
                             </ul>
                         </li>

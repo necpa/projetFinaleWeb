@@ -5,4 +5,10 @@ class DeliveryAddresseManager extends Model
     {
         return $this->getAll('deliveryaddresses','DeliveryAddresse');
     }
+
+    public function getAddressById($id)
+    {
+        return $this->getAll('delivery_addresses','DeliveryAddresse', ["id" => $id]);
+
+    }
 }

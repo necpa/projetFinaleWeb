@@ -128,8 +128,7 @@ body {
     box-shadow: none;
     border: none;
     font-size: 20px;
-    width: 100%;
-    height: 100%;
+
 }
 
 .btn.btn-primary:focus {
@@ -313,16 +312,7 @@ body {
     background-color: #ddd;
 }
 
-.btn.btn-primary.payment {
-    background-color: #1c6acf;
-    color: white;
-    border-radius: 0px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 24px;
-}
+
 
 
 .form__div {
