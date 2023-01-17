@@ -82,6 +82,7 @@ class ControllerAdresse
                 $cond = ['id' => $order_id,'customer_id' => $customer_id,'registered' => $registered, 'date' => $date, 'status' => '1','delivery_add_id' => $addresse_id, 'session' => $session, 'total' => $total];
                 $this->_orderManager->addToTableColumn('orders', $cond);
             }
+            $_SESSION['order_id'] = $order_id;
             $this->_orderItemManager = new OrderItemManager;
             $this->_orderItemManager->clearOrderItem($order_id);
             foreach($_SESSION['panier'] as $product)
