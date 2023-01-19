@@ -8,7 +8,7 @@ class DeliveryAddresseManager extends Model
 
     public function getAddressById($id)
     {
-        return $this->getAll('delivery_addresses','DeliveryAddresse', ["id" => $id]);
+        return $this->getOne('delivery_addresses', $id, DeliveryAddresse::class);
 
     }
 }

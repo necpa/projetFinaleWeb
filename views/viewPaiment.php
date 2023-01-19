@@ -127,7 +127,7 @@
                         <p>Votre commande sera expediée lors de la récéption de votre paiment.</p>
                     </div>
                 </div>
-                <a href="facture.php">
+                <a href="index.php?url=facture">
                     <p>
                         Cliquez <strong>ici</strong> pour obtenir votre facture
                     </p>

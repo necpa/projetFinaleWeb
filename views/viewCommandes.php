@@ -19,6 +19,7 @@
                 <?php if($order->getStatus() == 10) :?>
                     <span>|<strong> Status :</strong> Envoyée</span>
                 <?php endif; ?>
+                <a href="index.php?url=facture&order=<?=$order->getId()?>">Facture</a>
 
             </p>
             <!-- On parcours tout les items -->

@@ -35,10 +35,12 @@ class ControllerPaiment
                 $productQty = $product->getQuantity() - $_SESSION['panier'][$product_id]['productQty'];
                 $this->_productManager->modifyInTable('products', Product::class, ['quantity' => (int)$productQty], ['id' => (int)$product_id]);
             }
-            //unset($_SESSION['panier']);
             $date = date('Y-m-d');
             $this->_orderManager = new OrderManager;
             $this->_orderManager->modifyInTable('orders', Order::class, ['date' => $date,'payment_type' => $_SESSION['payment_type'], 'status' => 2, 'session' => session_id()],['id' => $_SESSION['order_id']]);
+            if (isset($_SESSION["panier"])){
+                unset($_SESSION["panier"]);
+            }
         }
 
         $this->_view = new View('Paiment');

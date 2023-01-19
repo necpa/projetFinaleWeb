@@ -82,6 +82,7 @@ abstract class Model
     }
 
     protected function getIdIn(string $table, $obj, array $ids = []){
+
         if(count($ids) === 0){
             return [];
         }

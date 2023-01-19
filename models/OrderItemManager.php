@@ -12,8 +12,8 @@ class OrderItemManager extends Model
         $this->addToTable($sql);
     }
 
-    public function getOrderItemsByOrderId($id)
+    public function getOrderItemsByOrderId($order_id)
     {
-        return $this->getAll('OrderItems','OrderItem',['order_id' => $id]);
+        return $this->getAll('OrderItems','OrderItem',['order_id' => $order_id]);
     }
 }
