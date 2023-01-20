@@ -19,6 +19,7 @@ class OrderManager extends Model
         $orders = $this->getOrderByCustId($id);
         if (count($orders) > 0){
             return $orders[count($orders) - 1];
+
         }
         return null;
     }

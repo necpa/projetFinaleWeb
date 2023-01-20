@@ -153,6 +153,7 @@
             <!-- Attention à bien mettre le moyen de paiment dans la bd avant d'unset-->
                 <?php unset($_SESSION["confirm_payment"]) ;
                 unset($_SESSION["payment_type"]);
+                $_SESSION['order_id'];
                 ?>
             <?php endif;?>
         <?php endif;?>

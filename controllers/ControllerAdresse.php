@@ -47,6 +47,7 @@ class ControllerAdresse
             else
             {
                 $customer_id = $this->_customerManager->maxId('customers') + 1;
+                $_SESSION["customer_id"] = $customer_id;
                 $firstname = $_POST['prenom'];
                 $lastname = $_POST['nom'];
                 $add1 = $_POST['add1'];
@@ -71,7 +72,8 @@ class ControllerAdresse
                 $date = date('Y-m-d');
                 $order_id = $_SESSION['order_id'];
                 $session = session_id();
-                $this->_orderManager->modifyInTable('orders', Order::class, ['date' => $date,'delivery_add_id' => $addresse_id, 'status' => '1', 'session' => $session],['id' => $order_id]);
+                $total = $_SESSION['prixTotal'];
+                $this->_orderManager->modifyInTable('orders', Order::class, ['date' => $date,'delivery_add_id' => $addresse_id, 'status' => '1', 'session' => $session, "total" => $total],['id' => $order_id]);
             }
             else
             {

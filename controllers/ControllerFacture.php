@@ -20,8 +20,8 @@ class ControllerFacture
         {
             $this->_orderManager = new OrderManager;
             $orderId = $_GET['order'] ?? null;
-            $order = $orderId ? $this->_orderManager->getOrderById($orderId) : $this->_orderManager->getLastOrderByCustId($_SESSION["login_id"]);
-            if ($order->getCustomerId() != $_SESSION["login_id"]){
+            $order = $orderId ? $this->_orderManager->getOrderById($orderId) : $this->_orderManager->getLastOrderByCustId((int)$_SESSION["customer_id"]);
+            if ($order->getCustomerId() != (int)$_SESSION["customer_id"]){
                 throw new Exception('Page introuvable');
             }
             $this->_deliveryAddresseManager = new DeliveryAddresseManager;

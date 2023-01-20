@@ -54,6 +54,9 @@ class ControllerPanier
             }
         }
         $this->_view = new View('Panier');
+        if (isset($_SESSION['order_id'])){
+            unset($_SESSION['order_id']);
+        }
         $this->_view->generate(array('products' => $products, 'panierProducts' => $panier));
     }
 
