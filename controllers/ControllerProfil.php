@@ -12,6 +12,7 @@ class ControllerProfil
             throw new Exception('Customer non trouvé.');
         }
         else{
+            //Formulaire modif customer
             if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST['modifyCustomer']))){
                 if (isset($_POST["forname"])){
                     $forname = $_POST["forname"];
@@ -37,14 +38,13 @@ class ControllerProfil
                 if (isset($_POST["email"])){
                     $email = $_POST["email"];
                 }
+                //On modifie les données du customer dans la table
                 $this->_CustomerManager->modifyInTable("customers", customers::class,["forname" => $forname , "surname"  => $surname, "add1" => $addone, "add2" => $addtwo, "add3" => $addthree, "postcode" => $postcode, "phone" => $phone, "email" => $email],["id" => $_SESSION['customer_id']]);
             }
         }
-
-
         $customer = $this->_CustomerManager->getOneCustomer($_SESSION['customer_id']);
-
         $this->_view = new View('Profil');
+        //On envoie le customer à la vue
         $this->_view->generate(array('customer' => $customer));
     }
 }

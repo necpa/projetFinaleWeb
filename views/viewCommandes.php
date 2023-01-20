@@ -34,7 +34,6 @@
     <?php else:?>
         <h3>Bonjour <?=$_SESSION['username']?>, vous n'avez pas encore commandé chez nous !</h3>
     <?php endif;?>
-
 <?php else:?>
     <h3>Bonjour <?=$_SESSION['username']?>, vous n'avez pas encore commandé chez nous !</h3>
 <?php endif;?>

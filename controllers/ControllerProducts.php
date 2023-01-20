@@ -20,6 +20,7 @@ class ControllerProducts
     }
     private function reviews()
     {
+        //On affiche la page d'un produit transmis dans l'url
         $productId = $_GET['id'] ?? null;
         if(!$productId || !((int)$productId > 0)){
             throw new Exception('No id in url.');
@@ -29,6 +30,7 @@ class ControllerProducts
         if(!$produit){
             throw new Exception('Produit non trouvé.');
         }
+        //On récupére les commentaires du produit
         $reviews = $this->_productManager->getProductReviews($produit);
         //Formulaire d'ajout de commentaire :
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
@@ -37,7 +39,7 @@ class ControllerProducts
             $genre = $_POST['genre'];
             $titre = $_POST['titre'];
             $commentaire = $_POST['commentaire'];
-            $compteur=0;//On regarde si il y'a déjà un commentaire avec le prénom dans ce produit
+            $compteur=0;//On regarde si il y'a déjà un commentaire avec le prénom dans ce produit (ça aurait été mieux de faire avec login_id mais on en était pas encore là)
             foreach ($reviews as $review) {
                     if ($prenom==$review->getNameUser()){
                         $compteur+=1;

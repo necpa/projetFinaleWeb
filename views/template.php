@@ -8,13 +8,11 @@
     <link href="style.css?v=<?=rand(1,100000000)?>" rel="stylesheet" >
 </head>
 <body>
-
     <header class="main-header">
         <a href="index.php?url=acceuil">
             <h1>I S I W E B 4 S H O P</h1>
         </a>
     </header>
-
     <nav class="navbar navbar-expand-lg bg-light mb-4">
         <div class="container">
             <a class="navbar-brand">Notre offre :</a>
@@ -27,6 +25,7 @@
                         $categoryManager = new CategoryManager();
                         $categories = $categoryManager->getCategories();
                     ?>
+                    <!-- On crée un onglet de la navbar pour chaques categories -->
                     <?php foreach ($categories as $category) : ?>
                         <li class="nav-item">
                             <?php if(isset($_GET['cat'])) : ?> <!-- On met en gras l'onglet sur lequel on se trouve -->
@@ -42,6 +41,7 @@
                     <?php endforeach;?>
                 </ul>
                 <ul class="nav navbar-nav nav-flex-icons mb-2 mb-lg-0">
+                    <!-- Si le client est log on affiche les différentes info sinon on affiche connexion -->
                     <?php if(isset($_SESSION['is_log'])) : ?>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,6 +70,7 @@
                         <?php else:?>
                             <a class="nav-link " href="index.php?url=panier">
                                 <span>Panier</span>
+                                <!-- On affiche le nombre de produits dans le panier -->
                                 <?php
                                 if(isset($_SESSION["panier"])){
                                     if($_SESSION["panier"]!=[]){

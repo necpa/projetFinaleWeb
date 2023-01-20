@@ -19,21 +19,33 @@ class ControllerFacture
         else
         {
             $this->_orderManager = new OrderManager;
+            //On récupére l'order id dans l'url
+            //Cela nous permet d'avoir accés à toutes les factures et non pas seulement celle d'apres le paiment
             $orderId = $_GET['order'] ?? null;
+            //Si il y'a un id dans l'url on récupére l'order avec son id
+            //Sinon on récupére la dernier order du customer
             $order = $orderId ? $this->_orderManager->getOrderById($orderId) : $this->_orderManager->getLastOrderByCustId((int)$_SESSION["customer_id"]);
+            //On sécurise afin de ne pas avoir acces aux factures juste en mettant un id dans l'url
             if ($order->getCustomerId() != (int)$_SESSION["customer_id"]){
                 throw new Exception('Page introuvable');
             }
             $this->_deliveryAddresseManager = new DeliveryAddresseManager;
+            //On récupére l'adresse
             $delivery_address = $this->_deliveryAddresseManager->getAddressById($order->getDeliveryAddId());
             $this->_orderItemManager = new OrderItemManager;
+            //On récupére les Items
             $orderItems = $this->_orderItemManager->getOrderItemsByOrderId($order->getId());
             $this->_productManager = new ProductManager;
-            $orderProductIds = array_map(fn ($orderItem) => $orderItem->getProductId(), $orderItems);//Boucle sur chaque orderItem et prend l'id
+            //Boucle sur chaque orderItem et prend l'id
+            $orderProductIds = array_map(fn ($orderItem) => $orderItem->getProductId(), $orderItems);
+            //On récupére les produits
             $products = $this->_productManager->getProductsById($orderProductIds);
+            //Boucle sur chaque produit et prend l'id
             $array_ids_products = array_map(fn ($product) => $product->getId(), $products);
             $products = array_combine($array_ids_products, $products);
+            //On a maintenant un tableau du type ["13" => "Product"]
             $date = date("d/m/Y");
+            //On met dans cette variable le code htmlà envoyer dans le pdf
             $pdf_html = <<<EOT
 <!doctype html>
 <html lang="en">
@@ -118,18 +130,14 @@ EOT;
     </body>
 </html>
 EOT;
-
-
-
+            //On utilise la librairie Dompdf pour générer notre pdf a partir du html
             $dompdf = new Dompdf();
             $dompdf->loadHtml($pdf_html);
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
-            $fichier = 'Facture Web4Shop ' . $orderId .'.pdf';
-            $dompdf->stream($fichier);
+            $fichier = 'Facture Web4Shop ' . $orderId .'.pdf';//nom du fichier
+            $dompdf->stream($fichier);//DL du fichier
         }
-
-
     }
 
 

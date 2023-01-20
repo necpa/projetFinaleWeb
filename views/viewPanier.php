@@ -23,7 +23,6 @@
                                             <div>
                                                 <p class="mb-1">Votre panier :
                                                     <?php
-
                                                     if(isset($_SESSION["panier"])){
                                                         if($_SESSION["panier"]!=[]){
                                                             echo "(" . count($_SESSION["panier"]) . " article" . (count($_SESSION["panier"]) > 1 ? "s" : "") . ")";

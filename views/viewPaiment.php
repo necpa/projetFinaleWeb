@@ -1,5 +1,4 @@
 <?php if (!isset($_SESSION["payment_type"])) :?> <!-- Si le mode de paiment n'est pas renseigné on affiche le choix-->
-
     <div class="containerr">
         <div class="row">
             <div class="col-lg-6 mb-lg-0 mb-3">
@@ -29,8 +28,7 @@
                                data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true"
                                aria-controls="collapseExample">
                                 <span class="fw-bold">PayPal</span>
-                                <span class="fab fa-cc-paypal">
-                                    </span>
+                                <span class="fab fa-cc-paypal"></span>
                             </a>
                         </p>
                         <div class="collapse p-3 pt-0" id="collapseExample">
@@ -39,13 +37,12 @@
                                     <p class="h4 mb-0"><strong>Récapitulatif :</strong></p>
                                     <p class="mb-0">
                                         <?php
-                                            echo(count($_SESSION["panier"]) . " ");
-                                            if (count($_SESSION["panier"]) == 1){
-                                                echo("produit");
+                                        if(isset($_SESSION["panier"])){
+                                            if($_SESSION["panier"]!=[]){
+                                                //Si il y'a un article on écrit article sinon articles
+                                                echo count($_SESSION["panier"]) . " article" . (count($_SESSION["panier"]) > 1 ? "s" : "");
                                             }
-                                            else{
-                                                echo("produits");
-                                            }
+                                        }
                                         ?>
                                     </p>
                                     <p class="mb-0"><span class="fw-bold">Prix:</span>
@@ -76,13 +73,12 @@
                                     <p class="h4 mb-0"><strong>Récapitulatif :</strong></p>
                                     <p class="mb-0">
                                         <?php
-                                            echo(count($_SESSION["panier"]) . " ");
-                                            if (count($_SESSION["panier"]) == 1){
-                                                echo("produit");
+                                        if(isset($_SESSION["panier"])){
+                                            if($_SESSION["panier"]!=[]){
+                                                //Si il y'a un article on écrit article sinon articles
+                                                echo count($_SESSION["panier"]) . " article" . (count($_SESSION["panier"]) > 1 ? "s" : "");
                                             }
-                                            else{
-                                                echo("produits");
-                                            }
+                                        }
                                         ?>
                                     </p>
                                     <p class="mb-0"><span class="fw-bold">Prix:</span>

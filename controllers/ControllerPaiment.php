@@ -28,6 +28,7 @@ class ControllerPaiment
         //Si l'utilisateur valide le paiment
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['validerCommande'])){
             $_SESSION["confirm_payment"] = true;
+            //On déduit la quantité acheté dans le stock
             foreach (array_keys($_SESSION['panier']) as $product_id)
             {
                 $this->_productManager = new ProductManager;
@@ -37,12 +38,13 @@ class ControllerPaiment
             }
             $date = date('Y-m-d');
             $this->_orderManager = new OrderManager;
+            //On met à jour le moyen de paiment et on passe l'état à 2
             $this->_orderManager->modifyInTable('orders', Order::class, ['date' => $date,'payment_type' => $_SESSION['payment_type'], 'status' => 2, 'session' => session_id()],['id' => $_SESSION['order_id']]);
+            //On supprime le panier
             if (isset($_SESSION["panier"])){
                 unset($_SESSION["panier"]);
             }
         }
-
         $this->_view = new View('Paiment');
         $this->_view->generate();
     }

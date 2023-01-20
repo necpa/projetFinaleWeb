@@ -13,16 +13,11 @@ class ControllerAcceuil
         }
         else
         {
-            $this->products();
+            $this->_productManager = new ProductManager;
+            //On récupére tout les produits qu'on envoie à la vue
+            $products = $this->_productManager->getProducts();
+            $this->_view = new View('Acceuil');
+            $this->_view->generate(array('products' => $products));
         }
     }
-
-    private function products()
-    {
-        $this->_productManager = new ProductManager;
-        $products = $this->_productManager->getProducts();
-        $this->_view = new View('Acceuil');
-        $this->_view->generate(array('products' => $products));
-    }
-
 }

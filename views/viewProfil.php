@@ -4,7 +4,6 @@
     </div>
     <form method="post" action="index.php?url=profil">
         <ul class="list-group list-group-flush">
-
             <li class="list-group-item">Prénom :
                 <input type="text" name="forname" value="<?= $customer->getForname(); ?>">
             </li>

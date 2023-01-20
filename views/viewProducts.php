@@ -1,4 +1,3 @@
-
         <div class="card mb-3" style="max-width: 700px;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -6,12 +5,9 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-
                             <h5 class="card-title"><?= $product->getName(); ?></h5>
                             <p class="card-text"><?= $product->getDescription(); ?></p>
                             <p class="card-text"><small class="text-muted">Notre prix : <?= $product->getPrice(); ?> €</small></p>
-
-
                             <!-- On vérifie les stocks, si il en reste on affiche le boutton ajouter au panier -->
                             <?php if ($product->getQuantity() > 0) : ?>
                                 <form method="post" class="card-text" action="index.php?url=products&id=<?=$product->getId() ?>">
@@ -33,13 +29,12 @@
     <!-- On affiche la liste des commentaires-->
     <h1>Commentaires :</h1>
     <?php foreach ($reviews as $review) : ?>
-
             <div class="commentaire">
                 <div>
                     <img class="photoProfil ligne" src="productimages/<?php echo($review->getPhotoUser())?>">
                     <b><p class="ligne"><?= $review->getNameUser()?> :</p></b>
                     <p class="ligne"><?= $review->getTitle()?></p>
-
+                    <!-- Affiche le bon nombre d'étoiles colorées -->
                     <?php for ($i=0; $i < $review->getStars(); $i++): ?>
                         <img class="etoile" src="productimages/review_star.png">
                     <?php endfor; ?>
@@ -50,7 +45,6 @@
                 <?= $review->getDescription()?>
             </div>
     <?php endforeach; ?>
-
         <!-- On affiche le formulaire d'ajout de commentaire-->
     <div class="card w-50 mb-3">
         <div class="card-header">
