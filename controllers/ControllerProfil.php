@@ -37,12 +37,12 @@ class ControllerProfil
                 if (isset($_POST["email"])){
                     $email = $_POST["email"];
                 }
-                $this->_CustomerManager->modifyInTable("customers", customers::class,["forname" => $forname , "surname"  => $surname, "add1" => $addone, "add2" => $addtwo, "add3" => $addthree, "postcode" => $postcode, "phone" => $phone, "email" => $email],["id" => $_SESSION['login_id']]);
+                $this->_CustomerManager->modifyInTable("customers", customers::class,["forname" => $forname , "surname"  => $surname, "add1" => $addone, "add2" => $addtwo, "add3" => $addthree, "postcode" => $postcode, "phone" => $phone, "email" => $email],["id" => $_SESSION['customer_id']]);
             }
         }
 
 
-        $customer = $this->_CustomerManager->getOneCustomer($_SESSION['login_id']);
+        $customer = $this->_CustomerManager->getOneCustomer($_SESSION['customer_id']);
 
         $this->_view = new View('Profil');
         $this->_view->generate(array('customer' => $customer));

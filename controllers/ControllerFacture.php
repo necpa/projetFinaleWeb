@@ -40,7 +40,7 @@ class ControllerFacture
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Bootstrap demo</title>
+        <title>Facture Web4Shop</title>
         <style>
             table {
               border: 1px solid black;

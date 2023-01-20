@@ -1,4 +1,4 @@
-<div class="card align-middle" style="width: 25rem;">
+<div class="card align-middle" style="width: 30rem;">
     <div class="card-header">
         <span>Vos informations personelles : </span>
     </div>
@@ -14,10 +14,10 @@
             <li class="list-group-item">Adresse 1 :
                 <input type="text" name="addone" value="<?= $customer->getAdd1(); ?>">
             </li>
-            <li class="list-group-item">Adresse 2 :
+            <li class="list-group-item">Complément d'adresse :
                 <input type="text" name="addtwo" value="<?= $customer->getAdd2(); ?>">
             </li>
-            <li class="list-group-item">Adresse 3 :
+            <li class="list-group-item">Ville :
                 <input type="text" name="addthree" value="<?= $customer->getAdd3(); ?>">
             </li>
             <li class="list-group-item">Code Postal :

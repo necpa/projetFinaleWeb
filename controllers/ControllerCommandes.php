@@ -30,9 +30,13 @@ class ControllerCommandes
             }
         }
 
-
         $this->_view = new View('Commandes');
-        $this->_view->generate(array('orders' => $orders, 'items' => $items ,'products' => $products));
+        if (count($orders) > 0 && count($products) > 0){
+            $this->_view->generate(array('orders' => $orders, 'items' => $items ,'products' => $products));
+        }
+        else{
+            $this->_view->generate();
+        }
     }
 }
 
