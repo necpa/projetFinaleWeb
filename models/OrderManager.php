@@ -23,4 +23,9 @@ class OrderManager extends Model
         }
         return null;
     }
+
+    public function getOrderByStatus($status)
+    {
+        return $this->getAll('orders', Order::class, ["status" => (int)$status]);
+    }
 }

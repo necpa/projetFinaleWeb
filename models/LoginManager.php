@@ -6,11 +6,23 @@ class LoginManager extends Model
         $cond = ["username" => $username, "password" => $password];
         $res = $this->getAll('logins',Login::class, $cond);
         if (empty($res))
-            return false;
+        {
+            $res = $this->getAll('admin',Admin::class,$cond);
+            if(empty($res))
+                return false;
+            $_SESSION['login_id'] = $res[0]->getId();
+            $_SESSION['username'] = $res[0]->getUsername();
+            $_SESSION['is_log'] = true;
+            $_SESSION['admin'] = true;
+            return true;
+        }
+        else
+        {
         $_SESSION['login_id'] = $res[0]->getId();
         $_SESSION['customer_id'] = $res[0]->getCustomerId();
         $_SESSION['username'] = $username;
         $_SESSION['is_log'] = true;
+        }
         $res = $this->getAll('orders', Order::class, ['customer_id' => $_SESSION['customer_id'], 'status' => '0']);
         if (!empty($res))
         {
@@ -59,7 +71,9 @@ class LoginManager extends Model
         $cond = ["username" => $username];
         $res = $this->getAll('logins',Login::class, $cond);
         if (empty($res))
-            return false;
+            $res = $this->getAll('admin',Admin::class, $cond);
+            if (empty($res))
+                return false;
         return true;
     }
 

@@ -48,9 +48,12 @@
                             <?php echo $_SESSION['username']?>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php?url=profil">Profil</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="index.php?url=commandes">Historique des commandes</a></li>
+                                <?php if(isset($_SESSION['admin'])): ?>
+                                    <li><a class="dropdown-item" href="index.php?url=commandes">Gestion des commandes</a></li>
+                                <?php else : ?>
+                                    <li><a class="dropdown-item" href="index.php?url=profil">Profil</a></li>
+                                    <li><a class="dropdown-item" href="index.php?url=commandes">Historique des commandes</a></li>
+                                <?php endif; ?>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="index.php?url=deconnexion">Deconnexion</a></li>
                             </ul>

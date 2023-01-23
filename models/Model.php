@@ -19,6 +19,13 @@ abstract class Model
         return self::$_bdd;
     }
 
+    public function deleteInTable($table, $id)
+    {
+        $sql = "DELETE FROM " .$table ." WHERE id = " .$id;
+        $req = $this->getBdd()->prepare($sql);
+        $req->execute();
+        $req->closeCursor();
+    }
     public function modifyInTable($table, $obj, $sets, $wheres )
     {
         $sql = "UPDATE " . $table;
