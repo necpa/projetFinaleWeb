@@ -19,5 +19,5 @@ class ControllerAcceuil
             $this->_view = new View('Acceuil');
             $this->_view->generate(array('products' => $products));
         }
-    }
+    } 
 }
